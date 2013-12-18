@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<project name="observer" default="run" basedir=".">  
+    <property name="classdir" value="build/classes"/>  
+    <target name="clean">  
+        <delete dir="${classdir}"/>          
+    </target>  
+       
+  
+ <target name="compile" depends="clean">  
+        <mkdir dir="${classdir}" />  
+        <javac srcdir="src" destdir="${classdir}" />  
+    </target>  
+
+<target name="run" depends="compile">  
+        <java classname="weatherobservable.WeatherStation">  
+        <classpath>  
+            <pathelement path="${classdir}"/>  
+        </classpath>  
+    </java>  
+    </target>
+
+<target name="jar" depends="run">   
+    <jar destfile="helloworld.jar" basedir="${classdir}">   
+        <manifest>   
+            <attribute name="Main-class" value="HelloWorld"/>   
+        </manifest>   
+    </jar>   
+</target>  
+  
+</project>  
